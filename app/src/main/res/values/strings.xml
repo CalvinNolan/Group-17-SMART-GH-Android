@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Group 17: SMART-GH (Android)</string>
+
+      <string id="@+id/string1" name="appName" layout_width="wrap_content" layout_height="wrap_content">Smart Graphhopper</string>
+      <string id="@+id/string1" name="to" layout_width="wrap_content" layout_height="wrap_content">To</string>
+      <string id="@+id/string1" name="from" layout_width="wrap_content" layout_height="wrap_content">From</string>
+      <string id="@+id/string1" name="search" layout_width="wrap_content" layout_height="wrap_content">Search</string>
+      <string name="title_activity_display_message">DisplayMessageActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
