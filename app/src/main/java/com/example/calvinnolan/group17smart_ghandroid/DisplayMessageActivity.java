@@ -14,11 +14,25 @@ public class DisplayMessageActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String route = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String[][] temp;
+        String parsedRoute = "";
+        try{
+            routeParser parser = new routeParser(route);
+            parser.parseRoute();
+            temp = parser.getRoute();
+            for(int i = 0; i < temp.length;i++){
+                parsedRoute = parsedRoute + temp[i][0] + "\n";
+            }
+        }
+        catch( Exception E ){
+
+        }
+
 
         // Create the text view
         TextView textView = new TextView(this);
         textView.setTextSize(13);
-        textView.setText(route);
+        textView.setText(parsedRoute);
 
         // Set the text view as the activity layout
         setContentView(textView);

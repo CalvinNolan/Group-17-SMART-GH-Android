@@ -70,7 +70,8 @@ public class MainActivity extends ActionBarActivity{
         Log.i("SearchRoute",routeSelected);
 
         // hardcoded test.
-        String temp = "http://172.16.160.132:8989/route/"
+        //String temp = "http://172.16.160.132:8989/route/"
+        String temp = "http://192.168.40.128:8989/route/"
                 //From
                 + "?point=53.340662%2C-6.243925"
                 //To
@@ -86,11 +87,11 @@ public class MainActivity extends ActionBarActivity{
 
         Log.i("", route);
 
-        requestRoute test2 = new requestRoute(53.340662, -6.243925, 53.338305, -6.237595, routeSelected, "foot");
-        String route2 = test2.sendRoute();
-        Log.i("", route2);
+        //requestRoute test2 = new requestRoute(53.340662, -6.243925, 53.338305, -6.237595, routeSelected, "foot");
+        //String route2 = test2.sendRoute();
+        //Log.i("", route2);
 
-        if(route.equals(route2)) Log.i("", "Strings are equal!");
+        //if(route.equals(route2)) Log.i("", "Strings are equal!");
 
         intent.putExtra(EXTRA_MESSAGE, route);
         startActivity(intent);
