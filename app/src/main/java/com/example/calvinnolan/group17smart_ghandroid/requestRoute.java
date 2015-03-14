@@ -13,22 +13,18 @@ import java.net.URL;
 public class requestRoute{
 
     private static String url;
-    private static String results;
+    private static String results = "";
 
     public requestRoute(String route)
     {
         url = route;
-        results = "";
     }
 
-    public requestRoute(double fromLong, double fromLat, double toLong, double toLat, String weighting, String vehicle)
+    public requestRoute(double fromLat, double fromLong, double toLat, double toLong, String weighting, String vehicle)
     {
-        results = "";
-        //Test push
-
-        url = "http://172.16.160.132:8989/route/";
-        url += "?point=" + fromLong + "%2C" + fromLat;
-        url += "&point=" + toLong + "%2C" + toLat;
+        url = "http://172.16.160.133:8989/route/";
+        url += "?point=" + fromLat + "%2C" + fromLong;
+        url += "&point=" + toLat + "%2C" + toLong;
         url += "&vehicle=" + vehicle;
         if(weighting.equals("Least Noise Pollution")) url += "&weighting=least_noise";
         else if(weighting.equals("Least Air Pollution")) url += "&weighting=least_air_pollution";

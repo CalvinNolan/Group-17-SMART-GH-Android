@@ -69,31 +69,45 @@ public class MainActivity extends ActionBarActivity{
 
         Log.i("SearchRoute",routeSelected);
 
+        geocoder toGeocoder = new geocoder();
+        geocoder fromGeocoder = new geocoder();
+
+        //Hardcoding the bounds to the greater Dublin region.
+        toGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
+        fromGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
+
+        double[] toPoints = toGeocoder.name2place(to);
+        double[] fromPoints = fromGeocoder.name2place(from);
+
+        Log.i(to,"lat: " + toPoints[0] + "long: " + toPoints[1]);
+
+        Log.i(from,"lat: " + fromPoints[0] + "long: " + fromPoints[1]);
+
         // hardcoded test.
         //String temp = "http://172.16.160.132:8989/route/"
-        String temp = "http://192.168.40.128:8989/route/"
-                //From
-                + "?point=53.340662%2C-6.243925"
-                //To
-                + "&point=53.338305%2C-6.237595"
-                //vehicle can be car, bike or foot.
-                + "&vehicle=foot"
-                //weighting can be:least_noise,least_air_pollution,fastest or shortest.
-                + "&weighting=least_air_pollution"
-                + "&locale=en-US";
+//        String temp = "http://172.16.160.132:8989/route/"
+//                //From
+//                + "?point=53.340662%2C-6.243925"
+//                //To
+//                + "&point=53.338305%2C-6.237595"
+//                //vehicle can be car, bike or foot.
+//                + "&vehicle=foot"
+//                //weighting can be:least_noise,least_air_pollution,fastest or shortest.
+//                + "&weighting=least_air_pollution"
+//                + "&locale=en-US";
+//
+//        requestRoute test = new requestRoute(temp);
+//        String route = test.sendRoute();
+//
+//        Log.i("", route);
 
-        requestRoute test = new requestRoute(temp);
-        String route = test.sendRoute();
-
-        Log.i("", route);
-
-        //requestRoute test2 = new requestRoute(53.340662, -6.243925, 53.338305, -6.237595, routeSelected, "foot");
-        //String route2 = test2.sendRoute();
-        //Log.i("", route2);
+        requestRoute test2 = new requestRoute(fromPoints[0], fromPoints[1], toPoints[0], toPoints[1], routeSelected, "foot");
+        String route2 = test2.sendRoute();
+        Log.i("", route2);
 
         //if(route.equals(route2)) Log.i("", "Strings are equal!");
 
-        intent.putExtra(EXTRA_MESSAGE, route);
+        intent.putExtra(EXTRA_MESSAGE, route2);
         startActivity(intent);
     }
 }
