@@ -13,14 +13,11 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_marginBottom="72dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/search"
-        android:onClick="searchRoute"/>
+        android:onClick="searchRoute"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/editText2"
@@ -69,14 +66,66 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/spinner1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="34dp"
         android:gravity="center"
         android:text="@string/appName"
         android:textAlignment="center"
         android:textColor="#85d3ef"
-        android:textSize="28sp" />
+        android:textSize="28sp"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Weighting"
+        android:textSize="20sp"
+        android:id="@+id/textView"
+        android:layout_above="@+id/spinner1"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_alignLeft="@+id/spinner1"
+        android:layout_alignStart="@+id/spinner1"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_below="@+id/textView1"
+        android:layout_above="@+id/textView"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentEnd="false"
+        android:src="@drawable/car"
+        android:onClick="searchRoute"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        android:layout_alignBottom="@+id/imageButton"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_toRightOf="@+id/imageButton"
+        android:layout_toEndOf="@+id/imageButton"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/bike"
+        android:onClick="searchRoute"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton3"
+        android:layout_alignBottom="@+id/imageButton2"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_toRightOf="@+id/imageButton2"
+        android:layout_alignRight="@+id/spinner1"
+        android:layout_alignEnd="@+id/spinner1"
+        android:src="@drawable/foot"
+        android:onClick="searchRoute"/>
 
 </RelativeLayout>

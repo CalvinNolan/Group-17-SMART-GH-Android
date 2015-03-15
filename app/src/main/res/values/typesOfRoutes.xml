@@ -3,7 +3,7 @@
     <string-array name="typesOfRoutes">
         <item>Fastest</item>
         <item>Shortest</item>
-        <item>Least Noise</item>
+        <item>Least Noise Pollution</item>
         <item>Least Air Pollution</item>
     </string-array>
 </resources>

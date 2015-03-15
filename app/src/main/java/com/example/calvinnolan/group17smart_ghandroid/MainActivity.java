@@ -1,5 +1,6 @@
 package com.example.calvinnolan.group17smart_ghandroid;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity{
 
@@ -53,61 +55,70 @@ public class MainActivity extends ActionBarActivity{
     /** Called when the user clicks the Search button */
     public void searchRoute(View view) throws Exception {
 
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-
+        String from, to = "";
         // Do something in response to button
         EditText editText = (EditText) findViewById(R.id.editText1);
-        String to = editText.getText().toString();
+        to = editText.getText().toString();
         Log.i("SearchRoute", to);
 
         editText = (EditText) findViewById(R.id.editText2);
-        String from = editText.getText().toString();
+        from = editText.getText().toString();
         Log.i("SearchRoute", from);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
-        String routeSelected=spinner.getSelectedItem().toString();
+        if(!to.equals("") && !from.equals("")) {
 
-        Log.i("SearchRoute",routeSelected);
+            String transport = "";
 
-        geocoder toGeocoder = new geocoder();
-        geocoder fromGeocoder = new geocoder();
+            switch(view.getId()) {
+                case R.id.imageButton:
+                    transport = "car";
+                    break;
+                case R.id.imageButton2:
+                    transport = "bike";
+                    break;
+                case R.id.imageButton3:
+                    transport = "foot";
+                    break;
+                default :
+                    transport = "foot";
+            }
 
-        //Hardcoding the bounds to the greater Dublin region.
-        toGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
-        fromGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
+            Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+            String routeSelected = spinner.getSelectedItem().toString();
 
-        double[] toPoints = toGeocoder.name2place(to);
-        double[] fromPoints = fromGeocoder.name2place(from);
+            Log.i("SearchRoute", routeSelected);
 
-        Log.i(to,"lat: " + toPoints[0] + "long: " + toPoints[1]);
+            geocoder toGeocoder = new geocoder();
+            geocoder fromGeocoder = new geocoder();
 
-        Log.i(from,"lat: " + fromPoints[0] + "long: " + fromPoints[1]);
+            //Hardcoding the bounds to the greater Dublin region.
+            toGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
+            fromGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
 
-        // hardcoded test.
-        //String temp = "http://172.16.160.132:8989/route/"
-//        String temp = "http://172.16.160.132:8989/route/"
-//                //From
-//                + "?point=53.340662%2C-6.243925"
-//                //To
-//                + "&point=53.338305%2C-6.237595"
-//                //vehicle can be car, bike or foot.
-//                + "&vehicle=foot"
-//                //weighting can be:least_noise,least_air_pollution,fastest or shortest.
-//                + "&weighting=least_air_pollution"
-//                + "&locale=en-US";
-//
-//        requestRoute test = new requestRoute(temp);
-//        String route = test.sendRoute();
-//
-//        Log.i("", route);
+            double[] toPoints = toGeocoder.name2place(to);
+            double[] fromPoints = fromGeocoder.name2place(from);
 
-        requestRoute test2 = new requestRoute(fromPoints[0], fromPoints[1], toPoints[0], toPoints[1], routeSelected, "foot");
-        String route2 = test2.sendRoute();
-        Log.i("", "results from requestRoute: " + route2);
+            Log.i(to, "lat: " + toPoints[0] + "long: " + toPoints[1]);
 
-        //if(route.equals(route2)) Log.i("", "Strings are equal!");
+            Log.i(from, "lat: " + fromPoints[0] + "long: " + fromPoints[1]);
 
-        intent.putExtra(EXTRA_MESSAGE, route2);
-        startActivity(intent);
+            requestRoute request = new requestRoute(fromPoints[0], fromPoints[1], toPoints[0], toPoints[1], routeSelected, transport);
+            String route = request.sendRoute();
+
+            Log.i("", "results from requestRoute: " + route);
+
+            Intent intent = new Intent(this, DisplayMessageActivity.class);
+
+            intent.putExtra(EXTRA_MESSAGE, route);
+            startActivity(intent);
+        }
+        else{
+            Context context = getApplicationContext();
+            CharSequence text = "Ensure both locations are not blank!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 }
