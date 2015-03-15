@@ -22,7 +22,7 @@ public class requestRoute{
 
     public requestRoute(double fromLat, double fromLong, double toLat, double toLong, String weighting, String vehicle)
     {
-        url = "http://172.16.160.133:8989/route/";
+        url = "http://172.16.160.135:8989/route/";
         url += "?point=" + fromLat + "%2C" + fromLong;
         url += "&point=" + toLat + "%2C" + toLong;
         url += "&vehicle=" + vehicle;
@@ -34,12 +34,17 @@ public class requestRoute{
     }
 
     public String sendRoute() throws Exception{
+
+        results = "";
+
         new Thread(new Runnable(){
 
             public void run(){
                 try{
+
                     URL obj = new URL(url);
                     //Log.i("", "Url made 1/7");
+                    Log.i("Sending Request: ", url);
 
                     HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
                     //Log.i("", "Connection made 2/7");
@@ -64,7 +69,7 @@ public class requestRoute{
                     //Log.i("", "Response Parsed 6/7");
 
                     results = response.toString();
-                    //Log.i("", "Results Set 7/7");
+                    Log.i("", "results from server: " + results);
                 }
                 catch (Exception E){
 

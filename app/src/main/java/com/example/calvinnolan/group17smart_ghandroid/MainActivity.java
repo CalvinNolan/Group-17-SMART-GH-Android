@@ -103,7 +103,7 @@ public class MainActivity extends ActionBarActivity{
 
         requestRoute test2 = new requestRoute(fromPoints[0], fromPoints[1], toPoints[0], toPoints[1], routeSelected, "foot");
         String route2 = test2.sendRoute();
-        Log.i("", route2);
+        Log.i("", "results from requestRoute: " + route2);
 
         //if(route.equals(route2)) Log.i("", "Strings are equal!");
 
