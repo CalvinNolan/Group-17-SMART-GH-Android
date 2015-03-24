@@ -97,7 +97,6 @@
         android:layout_above="@+id/textView"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_alignParentEnd="false"
         android:src="@drawable/car"
         android:onClick="searchRoute"/>
 
@@ -127,5 +126,16 @@
         android:layout_alignEnd="@+id/spinner1"
         android:src="@drawable/foot"
         android:onClick="searchRoute"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Map"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="viewMap"/>
 
 </RelativeLayout>

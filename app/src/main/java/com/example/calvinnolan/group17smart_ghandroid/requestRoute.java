@@ -22,7 +22,8 @@ public class requestRoute{
 
     public requestRoute(double fromLat, double fromLong, double toLat, double toLong, String weighting, String vehicle)
     {
-        url = "http://172.16.160.135:8989/route/";
+        //url = "http://172.16.160.135:8989/route/";
+        url = "http://192.168.40.132:8989/route/";
         url += "?point=" + fromLat + "%2C" + fromLong;
         url += "&point=" + toLat + "%2C" + toLong;
         url += "&vehicle=" + vehicle;

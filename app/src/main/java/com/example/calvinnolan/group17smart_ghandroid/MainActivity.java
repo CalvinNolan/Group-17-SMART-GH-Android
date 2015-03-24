@@ -51,6 +51,46 @@ public class MainActivity extends ActionBarActivity{
         }
         return super.onOptionsItemSelected(item);
     }
+    /** called when user clicks View Map button */
+    public void viewMap(View view) throws Exception{
+        String from, to = "";
+        // Do something in response to button
+        EditText editText = (EditText) findViewById(R.id.editText1);
+        to = editText.getText().toString();
+
+        editText = (EditText) findViewById(R.id.editText2);
+        from = editText.getText().toString();
+
+        if(!to.equals("") && !from.equals("")) {
+            geocoder toGeocoder = new geocoder();
+            geocoder fromGeocoder = new geocoder();
+
+            //Hardcoding the bounds to the greater Dublin region.
+            toGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
+            fromGeocoder.setBounds(-6.38390, 53.40870, -6.07250, 53.26600);
+
+            double[] toPoints = toGeocoder.name2place(to);
+            double[] fromPoints = fromGeocoder.name2place(from);
+
+            double[] allPoints = new double[4];
+            allPoints[0] = toPoints[0];
+            allPoints[1] = toPoints[1];
+            allPoints[2] = fromPoints[0];
+            allPoints[3] = fromPoints[1];
+
+            Intent intent = new Intent(this, Selectmap.class);
+            intent.putExtra(EXTRA_MESSAGE, allPoints);
+            startActivity(intent);
+        }
+        else{
+            Context context = getApplicationContext();
+            CharSequence text = "Ensure both locations are not blank!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+    }
 
     /** Called when the user clicks the Search button */
     public void searchRoute(View view) throws Exception {
@@ -108,7 +148,6 @@ public class MainActivity extends ActionBarActivity{
             Log.i("", "results from requestRoute: " + route);
 
             Intent intent = new Intent(this, DisplayMessageActivity.class);
-
             intent.putExtra(EXTRA_MESSAGE, route);
             startActivity(intent);
         }
