@@ -1,6 +1,8 @@
 package com.example.calvinnolan.group17smart_ghandroid;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,6 +22,7 @@ public class MainActivity extends ActionBarActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
@@ -31,6 +34,11 @@ public class MainActivity extends ActionBarActivity{
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+    }
+
+    public void settingsClick(View view) {
+        Intent intent = new Intent(this, SettingScreenActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -52,6 +60,7 @@ public class MainActivity extends ActionBarActivity{
         return super.onOptionsItemSelected(item);
     }
     /** called when user clicks View Map button */
+
     public void viewMap(View view) throws Exception{
         String from, to = "";
         // Do something in response to button
@@ -95,6 +104,11 @@ public class MainActivity extends ActionBarActivity{
     /** Called when the user clicks the Search button */
     public void searchRoute(View view) throws Exception {
 
+        // Getting the Url String from settings.
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String urlPref = sharedPreferences.getString("url_preference", null);
+        Log.i("Url preference", urlPref);
+
         String from, to = "";
         // Do something in response to button
         EditText editText = (EditText) findViewById(R.id.editText1);
@@ -105,7 +119,16 @@ public class MainActivity extends ActionBarActivity{
         from = editText.getText().toString();
         Log.i("SearchRoute", from);
 
-        if(!to.equals("") && !from.equals("")) {
+        if(urlPref.equals("")){
+
+            Context context = getApplicationContext();
+            CharSequence text = "Ensure the Url set is not blank in the settings tab!";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+        else if(!to.equals("") && !from.equals("")) {
 
             String transport = "";
 
@@ -142,7 +165,7 @@ public class MainActivity extends ActionBarActivity{
 
             Log.i(from, "lat: " + fromPoints[0] + "long: " + fromPoints[1]);
 
-            requestRoute request = new requestRoute(fromPoints[0], fromPoints[1], toPoints[0], toPoints[1], routeSelected, transport);
+            requestRoute request = new requestRoute(urlPref, fromPoints[0], fromPoints[1], toPoints[0], toPoints[1], routeSelected, transport);
             String route = request.sendRoute();
 
             Log.i("", "results from requestRoute: " + route);

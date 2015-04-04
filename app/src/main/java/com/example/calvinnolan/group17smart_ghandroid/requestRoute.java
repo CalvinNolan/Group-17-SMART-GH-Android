@@ -3,6 +3,8 @@ package com.example.calvinnolan.group17smart_ghandroid;
 /**
  * Created by calvinnolan on 08/03/15.
  */
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -20,10 +22,9 @@ public class requestRoute{
         url = route;
     }
 
-    public requestRoute(double fromLat, double fromLong, double toLat, double toLong, String weighting, String vehicle)
+    public requestRoute(String server, double fromLat, double fromLong, double toLat, double toLong, String weighting, String vehicle)
     {
-        //url = "http://172.16.160.135:8989/route/";
-        url = "http://192.168.40.132:8989/route/";
+        url = server;
         url += "?point=" + fromLat + "%2C" + fromLong;
         url += "&point=" + toLat + "%2C" + toLong;
         url += "&vehicle=" + vehicle;

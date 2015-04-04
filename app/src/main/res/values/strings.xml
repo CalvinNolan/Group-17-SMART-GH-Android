@@ -11,5 +11,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_selectmap">Selectmap</string>
     <string name="title_activity_route_map">RouteMapActivity</string>
+    <string name="title_activity_setting_screen">SettingScreenActivity</string>
 
 </resources>

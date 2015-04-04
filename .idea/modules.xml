@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Group-17-SMART-GH-Android.iml" filepath="$PROJECT_DIR$/Group-17-SMART-GH-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Group17SMART-GH(Android).iml" filepath="$PROJECT_DIR$/Group17SMART-GH(Android).iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
