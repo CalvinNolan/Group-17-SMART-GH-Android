@@ -28,7 +28,7 @@ public class routeParser {
     public routeParser(String route) throws Exception{
             routeString = new JSONObject(route);      
             distance = routeString.getInt("distance");
-            eta = routeString.getInt("time");
+            eta = routeString.getInt("time")/1000;
             JSONObject temp = routeString.getJSONArray("paths").getJSONObject(0);
             instructions = temp.getJSONArray("instructions");
            
@@ -37,16 +37,28 @@ public class routeParser {
             points = temp.getString("points");
     }
     public void parseRoute() throws Exception{
-                int t, d;
+            int t, d;
                
             route = new String[instructions.length()][3];
             for (int i = 0; i < instructions.length(); i++)
             {
                 route[i][0] = instructions.getJSONObject(i).getString("text");
-                t = instructions.getJSONObject(i).getInt("time");
-                route[i][1] = "" + t;
+                t = instructions.getJSONObject(i).getInt("time")/1000;
+
+                int hours = t / 3600;
+                int minutes = (t % 3600) / 60;
+                int seconds = (t % 3600) % 60;
+
+                if(hours != 0)  route[i][1] = hours + "h, " + minutes + "m, "
+                        + seconds + "s";
+                else if(minutes != 0) route[i][1] = minutes + "m, "
+                        + seconds + "s";
+                else route[i][1] = seconds + "s";
+
                 d = instructions.getJSONObject(i).getInt("distance");
-                route[i][2] = "" + d;
+                if(d > 999) route[i][2] = d / 1000 + "km";
+                else route[i][2] = d + "m";
+
             }
     }
     public int getDistance(){

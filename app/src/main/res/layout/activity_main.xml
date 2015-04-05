@@ -32,7 +32,7 @@
         android:inputType="text"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:hint="@string/from" />
+        android:hint="@string/from"/>
 
     <EditText
         android:id="@+id/editText1"
@@ -47,7 +47,7 @@
         android:inputType="text"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:hint="@string/to" >
+        android:hint="@string/to">
 
         <requestFocus />
     </EditText>
