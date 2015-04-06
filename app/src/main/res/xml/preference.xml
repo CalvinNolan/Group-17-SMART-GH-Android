@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+
+        android:key="url_preference"
+        android:title="Server to Request"
+        android:summary="Give the url to the server you wish to request"
+        android:dialogTitle="e.g. http://172.16.160.139:8989/route/" />
+
+</PreferenceScreen>
