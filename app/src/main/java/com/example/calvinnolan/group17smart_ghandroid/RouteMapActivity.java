@@ -14,7 +14,10 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class RouteMapActivity extends Activity {
@@ -22,13 +25,14 @@ public class RouteMapActivity extends Activity {
     private MapController   mMapController;
     private ItemizedIconOverlay<OverlayItem> itemizedIconOverlay;
     private PathOverlay thePath;
-    private double[] routePoints;
+    private String encodedRoute;
+    private List<GeoPoint> decodedPoints;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        routePoints = intent.getDoubleArrayExtra(DisplayMessageActivity.EXTRA_MESSAGE);
+        encodedRoute = intent.getStringExtra(DisplayMessageActivity.ENCODED_ROUTE);
 
         setContentView(R.layout.activity_route_map);
         mMapView = (MapView) findViewById(R.id.mapview);
@@ -36,16 +40,27 @@ public class RouteMapActivity extends Activity {
         mMapView.setBuiltInZoomControls(true);
 
         mMapController = (MapController) mMapView.getController();
-        mMapController.setZoom(14);
+        mMapController.setZoom(16);
 
-        /*for(int i = 0; i < routePoints.length; i+=2){
-            GeoPoint p = new GeoPoint(routePoints[i], routePoints[i+1]);
-            thePath.addPoint(p);
-        }*/
+        decodedPoints = routeParser.decodePoly(encodedRoute);
+
+        thePath = new PathOverlay(Color.BLUE, this);
+
+        //Add the Geopoints to the Overlay Path.
+        for(int i = 0; i < decodedPoints.size(); i++){
+           thePath.addPoint(decodedPoints.get(i).getLatitudeE6(), decodedPoints.get(i).getLongitudeE6());
+        }
+
         mMapView.setMultiTouchControls(true);
         mMapView.setClickable(true);
-        GeoPoint gPt = new GeoPoint(53.348256,-6.255879);
-        mMapController.setCenter(gPt);
-        //mMapView.getOverlays().add(thePath);
+
+        GeoPoint center = new GeoPoint(decodedPoints.get(0).getLatitudeE6()+10000, decodedPoints.get(0).getLongitudeE6()-15000);
+        mMapController.setCenter(center);
+
+        mMapView.getOverlays().add(thePath);
+
+        Paint pPaint = thePath.getPaint();
+        pPaint.setStrokeWidth(11);
+        thePath.setPaint(pPaint);
     }
 }

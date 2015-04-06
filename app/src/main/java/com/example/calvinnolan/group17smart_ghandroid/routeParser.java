@@ -76,7 +76,7 @@ public class routeParser {
     public String[][] getRoute(){
             return route;
     }
-    public List<GeoPoint> decodePoly(String encoded) {
+    public static List<GeoPoint> decodePoly(String encoded) {
 
         List<GeoPoint> poly = new ArrayList<GeoPoint>();
         int index = 0, len = encoded.length();

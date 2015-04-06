@@ -49,7 +49,8 @@ public class Selectmap extends Activity {
         overlay.add(to);
         overlay.add(from);
 
-        mMapController.setCenter(startA);
+        GeoPoint center = new GeoPoint(startA.getLatitudeE6()+50000, startA.getLongitudeE6()-40000);
+        mMapController.setCenter(center);
 
         itemizedIconOverlay = new ItemizedIconOverlay<OverlayItem>(this, overlay, null);
         mMapView.setMultiTouchControls(true);

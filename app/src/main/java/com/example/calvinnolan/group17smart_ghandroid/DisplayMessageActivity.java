@@ -18,7 +18,9 @@ import java.util.List;
 public class DisplayMessageActivity extends ActionBarActivity {
 
     public final static String EXTRA_MESSAGE = "com.example.calvinnolan.group17smart_ghandroid.DisplayMessageActivity";
+    public final static String ENCODED_ROUTE = "com.example.calvinnolan.group17smart_ghandroid.DisplayMessageActivity";
     private String points;
+    private String encodedRoute;
     private List<GeoPoint> decodedPoints;
     private double[] routeLatLong;
     private ListView listView;
@@ -46,6 +48,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
             eta = parser.getETA();
             temp = parser.getRoute();
             decodedPoints = parser.getDecodedPoints();
+            encodedRoute = parser.getEncodedPoints();
+            Log.i("Encoded Points =", encodedRoute);
 
             Log.i("", points);
             for(int i = 0; i < temp.length;i++){
@@ -98,6 +102,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     public void displayRoute(View view){
         Intent intent = new Intent(this, RouteMapActivity.class);
         intent.putExtra(EXTRA_MESSAGE, routeLatLong);
+        intent.putExtra(ENCODED_ROUTE, encodedRoute);
         startActivity(intent);
     }
 
