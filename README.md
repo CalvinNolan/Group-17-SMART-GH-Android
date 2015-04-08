@@ -14,6 +14,6 @@ While running, touch on the gear on the top right of the first screen and enter 
 
 Now your app will be able to mark any route in the greater Dublin Region!
 
-
+*If the maps do not work for you, ensure your Android Virtual Device uses an SD with enough memory*
 
 
