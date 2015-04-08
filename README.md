@@ -44,7 +44,7 @@ Hit "Search" and you will be able to see the route you requested, hit "View On M
   <p>
     <img src="/HowToUse/InfoScreen.png" width="200"/>
     &nbsp;&nbsp;&nbsp;
-    <img src="/HowToUse/LongMapRouteScreen.png" width="220"/>
+    <img src="/HowToUse/LongMapRouteScreen.png" width="215"/>
   </p>
 </div>
 
