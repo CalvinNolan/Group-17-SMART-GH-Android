@@ -35,7 +35,7 @@ Selecting "View Map" will show you your selected "To" and "From" points on an in
   <p>
     <img src="/HowToUse/MainScreen.png" width="200"/>
     &nbsp;&nbsp;&nbsp;
-    <img src="/HowToUse/MapSelectScreen.png" width="215"/>
+    <img src="/HowToUse/MapSelectScreen.png" width="225"/>
   </p>
 </div>
 Hit "Search" and you will be able to see the route you requested, hit "View On Map" to see it on an interactive map of Dublin.
