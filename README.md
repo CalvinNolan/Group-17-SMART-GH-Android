@@ -12,10 +12,10 @@ We recommend you use Android Studio (At least 1.1.0) to install and run project 
 Clone this repo into a new project and the application should install and run without any problems. 
 Use a Virtual Device supporting at least Android 5.0.
 
+Now your app will be able to mark any route in the greater Dublin Region!
+
 ## Cloning a repository in Android Studio
 Open Android Studio, and select "Checkout project from Version Control". Select Github from the list, and enter in your login details. Enter the repository url, and finish the wizard. The repository will now be imported into your workspace.
-
-Now your app will be able to mark any route in the greater Dublin Region!
 
 *If the maps do not work for you, ensure your Android Virtual Device uses an SD with enough memory*
 
